@@ -1,0 +1,133 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+    background-color:#f0f1f1;
+}
+
+#container{
+    width: 60%;
+    margin: 0 auto;
+    padding: 0px 20px;
+
+}
+
+#topForms{
+    background-color: white;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+#topForms > h5{
+    /* font-size: 16px; */
+    margin: 0;
+}
+
+#radioForm{
+    width: 40%;
+    font-family: 10px;    
+}
+
+
+label{
+    font-size: 14px;
+}
+
+h3{
+    margin: 20px 0px 5px;
+    font-family: impact;
+    color:#4a4a4f;
+}
+
+table{
+    text-align: center;
+    background-color: white;
+    padding: 10px; 
+}
+th{
+    border: 1px solid rgb(172, 172, 172);
+    background-color: #e84610;
+    color:white;
+    padding: 5px;
+    font-size: 14px;
+}
+
+td{
+    border: 1px solid rgb(172, 172, 172);
+    font-size: 14px;
+}
+
+.emptyTableData{
+    background-color: #e6ecf0;
+}
+
+.emptyRow{
+    height: 20px;
+    border: none;
+}
+
+#checkboxList{
+    text-align: left;
+}
+
+input[type="number"] {
+    border: rgb(172, 172, 172) 1px solid;
+    text-align: center;
+    font-size: 14px;
+    width: 95%;
+    font-family: Montserrat, sans-serif;
+    background-color: #ffede7;
+  }
+
+p{
+    margin: 3px;
+    padding: 0px;
+    
+}
+input[type="submit"]{
+    margin: 0;
+    padding: 10px 30px;
+    background-color: #009FE3;
+    color: white;
+    border: #009FE3 solid 1px;
+    border-radius: 5px; 
+    font-size: 16px; 
+    float: right;
+}
+
+input[type="submit"]:hover{
+    background-color: white;
+    color: #e84610;
+    border: #e84610 solid 1px;
+}
+
+input[type="submit"]:active{
+    background-color: #e84610;
+    color: white;
+    border: #e84610 solid 1px;
+}
+
+.titleClass{
+    /* background-color: #e6ecf0; */
+    /* font-weight:bolder; */
+    text-align: right;
+    border: none;
+    
+}
+
+td > h4{
+    margin-bottom: 5px;
+}
+
+#totalBuffer{
+    background-color:#e84610;
+    color: white; 
+}
+
+#totalWeeksVal{
+    background-color:#009FE3;
+    color: white; 
+}
+
+#glhVal{
+    background-color:#e84610;
+    color: white; 
+}

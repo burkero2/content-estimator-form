@@ -10,10 +10,33 @@ body{
 
 }
 
+#myForm, #checkboxForm, #contentTimingForm{
+    width: 100%;
+    background-color: white;
+}
+#checkboxForm{
+    margin: 10px auto;
+}
+
+#contentTimingForm> table{
+    width: 100%;
+}
+
+#checkboxForm > input[type="checkbox"]{
+    margin-left: 20px;
+}
+
+
+#textBox{
+    text-align: right;
+    
+}
+
 #topForms{
     background-color: white;
     padding: 5px;
     margin-bottom: 10px;
+    
 }
 
 #topForms > h5{
@@ -22,7 +45,7 @@ body{
 }
 
 #radioForm{
-    width: 40%;
+    width: 50%;
     font-family: 10px;    
 }
 
@@ -33,8 +56,8 @@ label{
 
 h3{
     margin: 20px 0px 5px;
-    font-family: impact;
     color:#4a4a4f;
+    
 }
 
 table{
@@ -53,6 +76,7 @@ th{
 td{
     border: 1px solid rgb(172, 172, 172);
     font-size: 14px;
+    width: 20%;
 }
 
 .emptyTableData{
@@ -75,6 +99,7 @@ input[type="number"] {
     width: 95%;
     font-family: Montserrat, sans-serif;
     background-color: #ffede7;
+    
   }
 
 p{
@@ -82,6 +107,18 @@ p{
     padding: 0px;
     
 }
+
+#preInsructions{
+    font-size: 14px;
+    margin:10px 0px 5px;
+}
+
+#levelInstructions{
+    font-size: 14px;
+    margin:5px 10px 15px 5px;
+    float: left;
+}
+
 input[type="submit"]{
     margin: 0;
     padding: 10px 30px;
@@ -129,5 +166,15 @@ td > h4{
 
 #glhVal{
     background-color:#e84610;
+    color: white; 
+}
+
+#totalUnitsVal{
+    background-color: #009FE3;
+    color:white;
+}
+
+#prepActivitiesValue{
+    background-color: #e84610;
     color: white; 
 }

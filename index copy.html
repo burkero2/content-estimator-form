@@ -12,41 +12,35 @@
 </head>
 
 <body>
-    
     <div id = "container">
-        <h3>GLH Calculator</h3>
-        
-        
+        <h3>Content Estimator App</h3>
         <div id ="topForms">
-            <p id = "levelInstructions">Choose a level:</p>
             <form id = "radioForm" action = "" method="get" name="radioForm">
                 <input type = "radio" id = "l3" value = "l3" name = "level">
                 <label for = "l3">L3 level</label>
                 <input type = "radio" id = "l5" value = "l5" name = "level" checked>
                 <label for = "l5">L5 level</label>
-            </form> 
+            </form>
+            
+            <form id="checkboxForm" action = "" method="get" name="checkboxForm">
+                
+                <input type="checkbox" id="learningOutcomes" name="learningOutcomes" value="learningOutcomes" checked>
+                <label for="vehicle1"> Learning Outcomes</label>
+                
+                <input type="checkbox" id="assessCriteria" name="assessCriteria" value="assessCriteria" checked>
+                <label for="assessCriteria">Assessment Criteria</label>
+                
+                <input type="checkbox" id="syllabus" name="syllabus" value="syllabus" checked>
+                <label for="syllabus"> Syllabus </label>
+                
+                <input type="checkbox" id="walkthrough" name="walkthrough" value="walkthrough" checked>
+                <label for="walkthrough"> Walkthrough Project </label>
+            </form>
+        
             
         </div>
-
-        <!-- Pre Content Tasks -->
-        <p id = "preInsructions">Deselect if complete:</p>
-        <form id="checkboxForm" action = "" method="get" name="checkboxForm">
-                
-            <input type="checkbox" id="learningOutcomes" name="learningOutcomes" value="learningOutcomes" checked>
-            <label for="vehicle1" > Learning Outcomes</label>
-            
-            <input type="checkbox" id="assessCriteria" name="assessCriteria" value="assessCriteria" checked>
-            <label for="assessCriteria" >Assessment Criteria</label>
-            
-            <input type="checkbox" id="syllabus" name="syllabus" value="syllabus" checked>
-            <label for="syllabus" > Syllabus </label>
-            
-            <input type="checkbox" id="walkthrough" name="walkthrough" value="walkthrough" checked>
-            <label for="walkthrough" > Walkthrough Project </label>
-        </form>
         
         <!-- Main Table -->
-        
         <form action = "" method="get" id = "myForm" name="myForm">
             <table id = "contentTable">
                 <tr>
@@ -60,21 +54,21 @@
             <!-- Text Based Lessons -->
                 <tr>
                     <td class = "titleClass"><p>Text based Lesson</p></td>
-                    <td><input type = "number" id = "textUnitsInput" value = "12" min = "0" /></td>
+                    <td><input type = "number" id = "textUnitsInput" value = "42" min = "0" /></td>
                     <td><input type = "number" id = "textLength" value = "10" min = "0"/></td>
                     <td id = "textWeighting">1</td>
                     <td id = "textResult" class = "glhResultClass">0</td>
                 </tr>
                 <tr>
                     <td class = "titleClass"><p>Text based Challenge</p></td>
-                    <td><input type = "number" id = "textChallengeInput" value = "42" min = "0"/></td>
+                    <td><input type = "number" id = "textChallengeInput" value = "3" min = "0"/></td>
                     <td><input type = "number" id = "textChallengeLength" value = "10" min = "0"/></td>
                     <td id = "textChallengeWeighting">10</td>
                     <td id = "textChallengeResult" class = "glhResultClass">0</td>
                 </tr>
                 <tr>
                     <td class = "titleClass"><p>Unit effort for text is 50%</p></td>
-                    <td id = "unitEffortVal">10</td>
+                    <td id = "unitEffortVal">0</td>
                     <td  class = "emptyRow" colspan="3"></td>
                 </tr> 
 
@@ -82,14 +76,14 @@
             <!-- Video Based Content -->
                 <tr>
                     <td class = "titleClass"><p>Passive</p></td>
-                    <td><input type = "number" id = "passiveVidInput" value = "4" min = "0"/></td>
+                    <td><input type = "number" id = "passiveVidInput" value = "12" min = "0"/></td>
                     <td><input type = "number" id = "passiveVidLength" value = "7" min = "0"/></td>
                     <td id = "passiveVidWeighting">1.2</td>
                     <td id = "passiveVidResult" class = "glhResultClass">0</td>
                 </tr>
                 <tr>
                     <td class = "titleClass"><p>Operational</p></td>
-                    <td><input type = "number" id = "operationalVidInput" value = "11" min = "0"/></td>
+                    <td><input type = "number" id = "operationalVidInput" value = "1" min = "0"/></td>
                     <td><input type = "number" id = "operationalVidLength" value = "7" min = "0"/></td>
                     <td id = "operationalVidWeighting">3</td>
                     <td id = "operationalVidResult" class = "glhResultClass">0</td>
@@ -97,14 +91,14 @@
                 
                 <tr>
                     <td class = "titleClass"><p>Active</p></td>
-                    <td><input type = "number" id = "activeVidInput" value = "13" min = "0"/></td>
+                    <td><input type = "number" id = "activeVidInput" value = "0" min = "0"/></td>
                     <td><input type = "number" id = "activeVidLength" value = "7" min = "0"/></td>
                     <td id = "activeVidWeighting">8</td>
                     <td id = "activeVidResult" class = "glhResultClass">0</td>
                 </tr>
                 <tr>
                     <td class = "titleClass"><p>Intensive</p></td>
-                    <td><input type = "number" id = "intensiveVidInput" value = "17" min = "0"/></p></td>
+                    <td><input type = "number" id = "intensiveVidInput" value = "0" min = "0"/></p></td>
                     <td><input type = "number" id = "intensiveVidLength" value = "7" min = "0"/></td>
                     <td id = "intensiveVidWeighting">11</td>
                     <td id = "intensiveVidResult"class = "glhResultClass">0</td>
@@ -113,47 +107,33 @@
                 <tr>
                     <td class = "titleClass"><p>Total Video Units</p></td>
                     <td><p id = "totalVideoUnitsVal">0</p></td>
-                    <td  class = "emptyRow" rowspan="2"></td>
+                    <td  class = "emptyRow" rowspan="8"></td>
                     <td class = "titleClass"><p>Total Mins</p></td>
                     <td><p  id = "totalMins">0</p></td>
                 </tr>
 
                 <tr>
                     <td class = "titleClass"><p>Total Units</p></td>
-                    <td id = "totalUnitsVal">0</td>
+                    <td><p id = "totalUnitsVal">0</p></td>
                     <td  class = "titleClass"><p>Total GLH (hours)</p></td>
                     <td id = "glhVal">0</td>  
                 </tr>
-                
-            </table>
-        </form>
-
-        <!-- Content Timing Form -->
-        <form id="contentTimingForm" action = "" method="get" name="contentTimingForm">
-            <table id = "contentTimingTable">
+                <tr>
+                    <td class = "emptyRow" colspan = "5"><hr /></td>
+                </tr>
                 <tr>
                     <td class = "titleClass"><p>Average hours to create a unit</p></td>
                     <td>
                         <input type = "number" id = "avgUnitsVal" value = "16.41" / step = "0.1" min = "0">
                     </td>
-                    <td class = "emptyRow" id = "textBox" colspan="3" rowspan = "5">
+                    <td class = "emptyRow" id = "textBox" colspan=" 2" rowspan = "5">
                         
                     </td>
                 </tr>
 
                 <tr>
-                    <td class = "titleClass"><p>Content Creation Hours</p></td>
-                    <td><p id = "courseHours">0</p></td> 
-                </tr>
-
-                <tr id = "prepActivities">
-                    <td class = "titleClass"><p>Prep Activities %</p></td>
-                    <td id = "prepActivitiesValue">50</td>
-                </tr>
-
-                <tr>
                     <td class = "titleClass"><p>Total Course Creation Hours</p></td>
-                    <td id = "totalCourseHours">0</td>
+                    <td><p id = "courseHours">0</p></td> 
                 </tr>
 
                 <tr>
@@ -176,14 +156,14 @@
                     <td class = "titleClass"><p>Total Weeks with Buffer (Rounded up)</p></td>
                     <td id = "totalBuffer">0</td>
                     <td class = "emptyRow"></td>
-                    <td class = "emptyRow"></td>
                     <td class = "emptyRow">
-                        <input id="submitBtn" type = "submit" onclick = "handleSubmit(event)">
-                    </td>
+                        <input id="submitBtn" type = "submit" onclick = "handleSubmit(event)"></td>
                 </tr>
-            </table>       
+            </table>
+        
         </form>
 
+        
         
     </div>
     <script type="text/javascript" src="static/script.js"></script>

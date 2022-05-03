@@ -1,5 +1,4 @@
 const form = document.getElementById("myForm").elements;
-const contentTimingForm = document.getElementById("contentTimingForm").elements;
 const radioForm = document.
 getElementById("radioForm").elements;
 console.log(form);
@@ -11,60 +10,49 @@ function handleSubmit(event){
     calcTime();
 }
 
-
-// 2. Second function called to calculate the total time needed to create a course. 
 function calcTime(){
-    // GLH Form: Calculate the total number of units in top half of the table
     let totalTextUnit = calcTextUnits();
     let totalVideoUnit = calcVideoUnits();
     let totalUnits = totalTextUnit + totalVideoUnit;
     document.getElementById("totalUnitsVal").innerHTML = totalUnits;
-    
-    // Timing Form: Calls a number of functions to calculate the total time needed to create a course.
     let totalHours = calcHours(totalUnits);
-    let courseTotalHours = calcPrepHours(totalHours);
-    let totalDays = calcDays(courseTotalHours);
+    let totalDays = calcDays(totalHours);
     let totalWeeks = calcWeeks(totalDays);
     let totalWithBuffer = calcBuffer(totalWeeks);
 }
 
-
-function calcPrepHours(totalHours){
-    let percentage = parseFloat(document.getElementById("prepActivitiesValue").innerText);
-    let totalCoursePrepHours = ((totalHours * percentage) / 100) + totalHours
-    document.getElementById("totalCourseHours").innerText = totalCoursePrepHours.toFixed(2);
-    return totalCoursePrepHours.toFixed(2);
-}
-
-
-// 2.1 Calculate the total number of units. 
-function calcTextUnits(){
-    let textUnits = parseInt(form["textUnitsInput"].value);
-    let challengeUnits = parseInt(form["textChallengeInput"].value);
-    let totalTextUnits = (textUnits + challengeUnits) / 2;
-    document.getElementById("unitEffortVal").innerHTML = totalTextUnits;
-    return totalTextUnits;
-}
-
-function calcVideoUnits(){
-    let passiveVidInput = parseInt(form["passiveVidInput"].value);
-    let operVidInput = parseInt(form["operationalVidInput"].value);
-    let activeVidInput = parseInt(form["activeVidInput"].value);
-    let intensiveVidInput = parseInt(form["intensiveVidInput"].value);
-    let totalVideoUnits = passiveVidInput + operVidInput + activeVidInput + intensiveVidInput;
-    document.getElementById("totalVideoUnitsVal").innerHTML = totalVideoUnits;
-    return totalVideoUnits;
-}
-
-// 2.2 Calculate the total number of hours needed to create a course.
 function calcHours(totalUnits){
-    let avgUnitLength = parseFloat(contentTimingForm["avgUnitsVal"].value);
-    let totalCourseHours = parseFloat((totalUnits * avgUnitLength).toFixed(2));
-    document.getElementById("courseHours").innerHTML = totalCourseHours;
-    return totalCourseHours;
+    let avgUnitLength = parseFloat(form["avgUnitsVal"].value);
+    totalCourseHours = parseFloat((totalUnits * avgUnitLength).toFixed(2));
+    let courseHoursWithPrep = prepFunction(totalCourseHours);
+    document.getElementById("courseHours").innerHTML = courseHoursWithPrep;
+    return courseHoursWithPrep;
 }
 
-
+function prepFunction(totalCourseHours){
+    let courseHoursRate = 0;
+    let text = "";
+    let prepForm = document.getElementById("checkboxForm").elements;
+    for (let i= 0; i<prepForm.length; i++){
+        if(prepForm[i].value === "learningOutcomes" && prepForm[i].checked === false){
+            courseHoursRate += 10;
+            text += "Learning Outcomes Added (+10%)<br/>"
+        } else if(prepForm[i].value === "assessCriteria" && prepForm[i].checked === false){
+            courseHoursRate += 10;
+            text += "Assessment Criteria Added (+10%)<br />"
+        } else if(prepForm[i].value === "syllabus" && prepForm[i].checked === false){
+            courseHoursRate += 10;
+            text += "Syllabus Added (+10%)<br/>"
+        } else if(prepForm[i].value === "walkthrough" && prepForm[i].checked === false){
+            courseHoursRate += 25;
+            text += "Walkthrough Project Added (+25%)<br/>"
+        }
+    } 
+    totalCourseHours = ((totalCourseHours * (courseHoursRate / 100)) + totalCourseHours);
+    console.log(text);
+    document.getElementById("textBox").innerHTML = text;
+    return totalCourseHours.toFixed(2);
+}
 
 function calcDays(totalHours){
     let totalDays = parseFloat((totalHours / 7.5).toFixed(2));
@@ -81,15 +69,30 @@ function calcWeeks(totalDays){
 }
 
 function calcBuffer(totalWeeks){
-    let buffer = parseInt(contentTimingForm["bufferVal"].value);
+    let buffer = parseInt(form["bufferVal"].value);
     let totalWithBuffer = (totalWeeks * buffer/ 100) + totalWeeks;
     document.getElementById("totalBuffer").innerHTML = Math.ceil(totalWithBuffer);
     return totalWithBuffer;
 }
 
+function calcVideoUnits(){
+    let passiveVidInput = parseInt(form["passiveVidInput"].value);
+    let operVidInput = parseInt(form["operationalVidInput"].value);
+    let activeVidInput = parseInt(form["activeVidInput"].value);
+    let intensiveVidInput = parseInt(form["intensiveVidInput"].value);
+    let totalVideoUnits = passiveVidInput + operVidInput + activeVidInput + intensiveVidInput;
+    document.getElementById("totalVideoUnitsVal").innerHTML = totalVideoUnits;
+    return totalVideoUnits;
+}
 
+function calcTextUnits(){
+    let textUnits = parseInt(form["textUnitsInput"].value);
+    let challengeUnits = parseInt(form["textChallengeInput"].value);
+    let totalTextUnits = (textUnits + challengeUnits) / 2;
+    document.getElementById("unitEffortVal").innerHTML = totalTextUnits;
+    return totalTextUnits;
+}
 
-// 1. First function called, to calculate the GLH for the top half of the table
 function calcGLH(){
     let total = textBasedFunction();
     total += challengeBasedFunction();
@@ -102,7 +105,6 @@ function calcGLH(){
     document.getElementById("totalMins").innerHTML = total;
     let totalGLH = getMins(total);
     document.getElementById("glhVal").innerHTML = totalGLH.toFixed(2);
-    
 }
 
 function textBasedFunction(){
@@ -176,7 +178,6 @@ function unitGLHFunction(numVids, avgLength, weight){
     return glhResult;
 }
 
-// 1.1 Event Listener to check if the L5 or L3 Tick boxes are selected. Each present different values to calculate 
 document.getElementById("radioForm").addEventListener('change', function(event){
     if(event.target.value === "l3"){
         document.getElementById("textWeighting").innerHTML = 3;
@@ -193,45 +194,29 @@ document.getElementById("radioForm").addEventListener('change', function(event){
         document.getElementById("activeVidWeighting").innerHTML = 8;
         document.getElementById("intensiveVidWeighting").innerHTML = 1;
     }
-    document.getElementById("textResult").innerHTML = 0;
-    document.getElementById("textChallengeResult").innerHTML = 0;
-    document.getElementById("passiveVidResult").innerHTML = 0;
-    document.getElementById("operationalVidResult").innerHTML = 0;
-    document.getElementById("activeVidResult").innerHTML = 0;
-    document.getElementById("intensiveVidResult").innerHTML = 0;
+    calcGLH();
 });
 
-let percentage = 50;
-// 3. Event Listener to Add the Prep Activities to the Lower Table 
-document.getElementById("checkboxForm").addEventListener('change', function prepFunction(event){
-    let form = event.target;
-    let totalHours = parseFloat(document.getElementById("courseHours").innerText)
-    
-    console.log(totalHours)
-    if(form.checked == true){
-        if(form.value == "walkthrough"){
-            percentage += 20;
-        } else{
-            percentage += 10;
-        }
-    } else if(form.checked == false){
-        if(form.value == "walkthrough"){
-            percentage -= 20;
-        } else{
-            percentage -= 10;
-        }
-    }
+// Function for the prep-activities form such as Walkthrough Project etc...
+// document.getElementById("checkboxForm").addEventListener("change", function prepFunction(event){
+//     if(event.target.value === "learningOutcomes" && event.target.checked === false){
+//         courseHours += 10;
+//     } else if(event.target.value === "learningOutcomes" && event.target.checked === true){
+//         courseHours -= 10;
+//     } else if(event.target.value === "assessCriteria" && event.target.checked === false){
+//         courseHours += 10;
+//     } else if(event.target.value === "assessCriteria" && event.target.checked === true){
+//         courseHours -= 10;
+//     } else if(event.target.value === "syllabus" && event.target.checked === false){
+//         courseHours += 10;
+//     } else if(event.target.value === "syllabus" && event.target.checked === true){
+//         courseHours -= 10;
+//     } else if(event.target.value === "walkthrough" && event.target.checked === false){
+//         courseHours += 25;
+//     } else if(event.target.value === "walkthrough" && event.target.checked === true){
+//         courseHours -= 25;
+//     }
+//     console.log(courseHours);
+//     return courseHours;
+// });
 
-    clearCells();
-    document.getElementById("prepActivitiesValue").innerText = percentage;
-});
-
-
-function clearCells(){
-    document.getElementById("totalCourseHours").innerText = 0;
-    document.getElementById("totalDaysVal").innerText = 0;
-    document.getElementById("totalWeeksVal").innerText = 0;
-
-    document.getElementById("totalBuffer").innerText = 0;
-}
-    
